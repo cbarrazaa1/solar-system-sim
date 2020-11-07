@@ -10,7 +10,7 @@ const imgs = [
   loader.load('/textures/skybox/milkyway_view.jpg'),
 ];
 const sides = imgs.map(img => new MeshBasicMaterial({map: img, side: BackSide}));
-const skyboxBuffer = new BoxGeometry(100000, 100000, 100000);
+const skyboxBuffer = new BoxGeometry(1000000, 1000000, 1000000);
 const skybox = new Mesh(skyboxBuffer, sides);
 
 export default skybox;
