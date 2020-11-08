@@ -132,7 +132,7 @@ spaceObjects.push(
   }),
   new SpaceObject({
     radius: 1300.11,
-    distance: 23399,
+    distance: 27399,
     rotationSpeed: 0.0025061,
     translationSpeed: 43.4,
     quality: 32,
@@ -183,7 +183,7 @@ spaceObjects.push(
   }),
   new SpaceObject({
     radius: 1000.32,
-    distance: 31500,
+    distance: 35500,
     rotationSpeed: 0.0035532,
     translationSpeed: 32.3,
     quality: 32,
@@ -193,7 +193,7 @@ spaceObjects.push(
   }),
   new SpaceObject({
     radius: 800.62,
-    distance: 44500,
+    distance: 48500,
     rotationSpeed: 0.000932,
     translationSpeed: 22.8,
     quality: 32,
@@ -204,7 +204,7 @@ spaceObjects.push(
   }),
   new SpaceObject({
     radius: 650.22,
-    distance: 66500,
+    distance: 70500,
     rotationSpeed: 0.000965,
     translationSpeed: 18.2,
     quality: 32,
@@ -220,7 +220,7 @@ function getRandom(min: number, max: number): number {
 for (let i = 0; i < 2500; i++) {
   const asteroid = new SpaceObject({
     radius: getRandom(20, 120),
-    distance: getRandom(14500, 15000) + getRandom(0, 5000),
+    distance: getRandom(15500, 16000) + getRandom(0, 4000),
     rotationSpeed: getRandom(0.0001, 0.001),
     translationSpeed: getRandom(3, 100),
     quality: Math.floor(getRandom(4, 10)),
