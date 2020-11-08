@@ -1,4 +1,5 @@
 import {
+  DoubleSide,
   Geometry,
   Group,
   Line,
@@ -6,6 +7,7 @@ import {
   Mesh,
   MeshBasicMaterial,
   MeshStandardMaterial,
+  RingGeometry,
   Shape,
   SphereBufferGeometry,
   Texture,
@@ -23,6 +25,9 @@ type SpaceObjectOptions = {
   showOrbit?: boolean;
   ignoreLight?: boolean;
   castShadow?: boolean;
+  ringTexture?: Texture;
+  ringSize?: number;
+  axisAngle?: number;
 };
 
 class SpaceObject {
@@ -50,6 +55,9 @@ class SpaceObject {
     showOrbit = true,
     ignoreLight = false,
     castShadow = false,
+    ringTexture = null,
+    ringSize = 800,
+    axisAngle = 0,
   }: SpaceObjectOptions) {
     this.buffer = new SphereBufferGeometry(radius, quality, quality / 2);
 
@@ -92,6 +100,18 @@ class SpaceObject {
 
       this.orbitLine = new Line(lineBuffer, lineMaterial);
     }
+
+    // rings
+    if (ringTexture != null) {
+      const ringBuffer = new RingGeometry(radius + 160, radius + ringSize, 128);
+      const ringMaterial = new MeshStandardMaterial({map: ringTexture, side: DoubleSide});
+      const ringMesh = new Mesh(ringBuffer, ringMaterial);
+      ringMesh.rotation.x = 1.5708;
+      this.group.add(ringMesh);
+    }
+
+    // axis
+    this.group.rotation.x = axisAngle;
   }
 
   public addSatellite(satellite: SpaceObject) {
