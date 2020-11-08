@@ -29,6 +29,7 @@ type SpaceObjectOptions = {
   ringTexture?: Texture;
   ringSize?: number;
   axisAngle?: number;
+  randomRotation?: boolean;
 };
 
 class SpaceObject {
@@ -39,6 +40,7 @@ class SpaceObject {
   private distance: number;
   private rotationSpeed: number;
   private translationSpeed: number;
+  private randomRotation: boolean;
   public orbitLine?: Line;
   public group: Group;
   public x: number;
@@ -60,8 +62,9 @@ class SpaceObject {
     ringTexture = null,
     ringSize = 800,
     axisAngle = 0,
+    randomRotation = false,
   }: SpaceObjectOptions) {
-    this.buffer = new SphereBufferGeometry(radius, quality, quality / 2);
+    this.buffer = new SphereBufferGeometry(radius, quality / 2, quality / 2);
 
     if (ignoreLight) {
       this.material = new MeshBasicMaterial({ map: texture });
@@ -82,11 +85,12 @@ class SpaceObject {
     this.distance = distance;
     this.rotationSpeed = rotationSpeed;
     this.translationSpeed = translationSpeed / 500.0;
+    this.randomRotation = randomRotation;
 
     // create orbit line
     if (showOrbit) {
       const lineBuffer = new Geometry();
-      const lineMaterial = new LineBasicMaterial({ color: 0xffffff });
+      const lineMaterial = new LineBasicMaterial({ color: 'gray' });
 
       for (let i = 0; i <= 128; i++) {
         const theta = (i / 128) * Math.PI * 2;
@@ -123,8 +127,12 @@ class SpaceObject {
     this.z = Math.sin(delta * translationSpeed) * distance;
 
     group.position.set(this.x, this.y, this.z);
-
     group.rotation.y += this.rotationSpeed;
+
+    if (this.randomRotation) {
+      group.rotation.x += this.rotationSpeed * Math.random();
+      group.rotation.z += this.rotationSpeed * Math.random();
+    }
 
     for (const satellite of this.satellites) {
       satellite.update(delta);

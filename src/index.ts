@@ -220,12 +220,13 @@ function getRandom(min: number, max: number): number {
 for (let i = 0; i < 2500; i++) {
   const asteroid = new SpaceObject({
     radius: getRandom(20, 120),
-    distance: getRandom(15500, 16000) + getRandom(0, 4000),
-    rotationSpeed: getRandom(0.0001, 0.001),
+    distance: getRandom(16000, 16500) + getRandom(0, 4500),
+    rotationSpeed: getRandom(0.001, 0.01),
     translationSpeed: getRandom(3, 100),
     quality: Math.floor(getRandom(4, 10)),
     texture: moonTexture,
     showOrbit: false,
+    randomRotation: true,
   });
 
   spaceObjects.push(asteroid);
