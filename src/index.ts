@@ -38,14 +38,18 @@ const venusTexture = loader.load("/textures/venus_surface.jpg");
 const earthTexture = loader.load("/textures/earth_surface.jpg");
 const marsTexture = loader.load("/textures/mars_surface.jpg");
 const jupiterTexture = loader.load("/textures/jupyter_surface.jpg");
+const europaTexture = loader.load("/textures/europa_surface.jpg");
+const ganymedeTexture = loader.load("/textures/ganymede_surface.jpg");
+const callistoTexture = loader.load("/textures/callisto_surface.jpg");
+const ioTexture = loader.load("/textures/io_surface.jpg");
 const saturnTexture = loader.load("/textures/saturn_surface.jpg");
-const saturnRingsTexture = loader.load('/textures/saturn_rings.png');
+const saturnRingsTexture = loader.load("/textures/saturn_rings.png");
 const uranusTexture = loader.load("/textures/uranus_surface.jpg");
-const uranusRingsTexture = loader.load('/textures/test.jpg');
+const uranusRingsTexture = loader.load("/textures/test.jpg");
 const neptuneTexture = loader.load("/textures/neptune_surface.jpg");
-const moonTexture = loader.load('/textures/moon_surface.jpg');
-const deimosTexture = loader.load('/textures/deimos_surface.png');
-const phobosTexture = loader.load('/textures/phobos_surface.png');
+const moonTexture = loader.load("/textures/moon_surface.jpg");
+const deimosTexture = loader.load("/textures/deimos_surface.png");
+const phobosTexture = loader.load("/textures/phobos_surface.png");
 
 // create objects
 const spaceObjects: SpaceObject[] = [];
@@ -83,6 +87,7 @@ spaceObjects.push(
     quality: 32,
     texture: earthTexture,
     castShadow: true,
+    receiveShadow: true,
     satellites: [
       new SpaceObject({
         radius: 15,
@@ -92,6 +97,7 @@ spaceObjects.push(
         quality: 32,
         texture: moonTexture,
         castShadow: true,
+        receiveShadow: true,
       }),
     ],
   }),
@@ -111,7 +117,7 @@ spaceObjects.push(
         translationSpeed: 0.001 * 500,
         quality: 12,
         texture: deimosTexture,
-        castShadow: true, 
+        castShadow: true,
       }),
       new SpaceObject({
         radius: 21,
@@ -119,18 +125,61 @@ spaceObjects.push(
         rotationSpeed: 0.002,
         translationSpeed: 0.006 * 500,
         quality: 8,
-        texture: deimosTexture,
-        castShadow: true, 
-      })
-    ]
+        texture: phobosTexture,
+        castShadow: true,
+      }),
+    ],
   }),
   new SpaceObject({
     radius: 1300.11,
     distance: 23399,
-    rotationSpeed: 0.0045061,
+    rotationSpeed: 0.0025061,
     translationSpeed: 43.4,
     quality: 32,
+    castShadow: true,
     texture: jupiterTexture,
+    satellites: [
+      new SpaceObject({
+        radius: 25,
+        distance: 1900,
+        rotationSpeed: 0.002,
+        translationSpeed: 10,
+        quality: 20,
+        texture: europaTexture,
+        castShadow: true,
+        receiveShadow: true,
+      }),
+      new SpaceObject({
+        radius: 45,
+        distance: 1600,
+        rotationSpeed: 0.002,
+        translationSpeed: 20,
+        quality: 20,
+        texture: ioTexture,
+        castShadow: true,
+        receiveShadow: true,
+      }),
+      new SpaceObject({
+        radius: 80,
+        distance: 2550,
+        rotationSpeed: 0.002,
+        translationSpeed: 40,
+        quality: 20,
+        texture: callistoTexture,
+        castShadow: true,
+        receiveShadow: true,
+      }),
+      new SpaceObject({
+        radius: 130,
+        distance: 2230,
+        rotationSpeed: 0.002,
+        translationSpeed: 60,
+        quality: 20,
+        texture: ganymedeTexture,
+        castShadow: true,
+        receiveShadow: true,
+      }),
+    ],
   }),
   new SpaceObject({
     radius: 1000.32,
@@ -150,7 +199,7 @@ spaceObjects.push(
     quality: 32,
     texture: uranusTexture,
     ringTexture: uranusRingsTexture,
-    ringSize: 400,
+    ringSize: 320,
     axisAngle: 1.69297,
   }),
   new SpaceObject({
@@ -163,9 +212,31 @@ spaceObjects.push(
   })
 );
 
+// asteroids
+function getRandom(min: number, max: number): number {
+  return Math.random() * (max - min) + min;
+}
+
+for (let i = 0; i < 2500; i++) {
+  const asteroid = new SpaceObject({
+    radius: getRandom(20, 120),
+    distance: getRandom(14500, 15000) + getRandom(0, 5000),
+    rotationSpeed: getRandom(0.0001, 0.001),
+    translationSpeed: getRandom(3, 100),
+    quality: Math.floor(getRandom(4, 10)),
+    texture: moonTexture,
+    showOrbit: false,
+  });
+
+  spaceObjects.push(asteroid);
+}
+
 for (const obj of spaceObjects) {
   scene.add(obj.group);
-  scene.add(obj.orbitLine);
+
+  if (obj.orbitLine != null) {
+    scene.add(obj.orbitLine);
+  }
 }
 
 // create sun light
@@ -195,7 +266,6 @@ cameraController.update();
 
 let i = 0;
 document.addEventListener("keydown", function (e) {
-
   switch (e.key) {
     case "1":
       i = 0;
@@ -225,7 +295,6 @@ document.addEventListener("keydown", function (e) {
       i = 8;
       break;
   }
-  
 });
 
 function animate(): void {

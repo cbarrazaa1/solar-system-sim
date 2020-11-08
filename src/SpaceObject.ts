@@ -25,6 +25,7 @@ type SpaceObjectOptions = {
   showOrbit?: boolean;
   ignoreLight?: boolean;
   castShadow?: boolean;
+  receiveShadow?: boolean;
   ringTexture?: Texture;
   ringSize?: number;
   axisAngle?: number;
@@ -55,6 +56,7 @@ class SpaceObject {
     showOrbit = true,
     ignoreLight = false,
     castShadow = false,
+    receiveShadow = false,
     ringTexture = null,
     ringSize = 800,
     axisAngle = 0,
@@ -68,13 +70,8 @@ class SpaceObject {
     }
 
     this.mesh = new Mesh(this.buffer, this.material);
-    if (castShadow) {
-      this.mesh.castShadow = true;
-      this.mesh.receiveShadow = true;
-    } else {
-      this.mesh.castShadow = false;
-      this.mesh.receiveShadow = false;
-    }
+    this.mesh.castShadow = castShadow;
+    this.mesh.receiveShadow = receiveShadow;
 
     this.satellites = satellites;
     this.group = new Group();
