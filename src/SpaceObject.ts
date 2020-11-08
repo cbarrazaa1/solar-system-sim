@@ -30,6 +30,7 @@ type SpaceObjectOptions = {
   ringSize?: number;
   axisAngle?: number;
   randomRotation?: boolean;
+  orbitInclination?: number;
 };
 
 class SpaceObject {
@@ -41,6 +42,7 @@ class SpaceObject {
   private rotationSpeed: number;
   private translationSpeed: number;
   private randomRotation: boolean;
+  private orbitInclination: number;
   public orbitLine?: Line;
   public group: Group;
   public x: number;
@@ -63,6 +65,7 @@ class SpaceObject {
     ringSize = 800,
     axisAngle = 0,
     randomRotation = false,
+    orbitInclination = 0,
   }: SpaceObjectOptions) {
     this.buffer = new SphereBufferGeometry(radius, quality / 2, quality / 2);
 
@@ -86,6 +89,7 @@ class SpaceObject {
     this.rotationSpeed = rotationSpeed;
     this.translationSpeed = translationSpeed / 500.0;
     this.randomRotation = randomRotation;
+    this.orbitInclination = orbitInclination;
 
     // create orbit line
     if (showOrbit) {
@@ -95,7 +99,7 @@ class SpaceObject {
       for (let i = 0; i <= 128; i++) {
         const theta = (i / 128) * Math.PI * 2;
         lineBuffer.vertices.push(
-          new Vector3(Math.cos(theta) * distance, 0, Math.sin(theta) * distance)
+          new Vector3(Math.cos(theta) * distance, Math.cos(theta) * orbitInclination * distance, Math.sin(theta) * distance)
         );
       }
 
@@ -121,9 +125,9 @@ class SpaceObject {
   }
 
   public update(delta: number): void {
-    const { group, translationSpeed, distance } = this;
+    const { group, translationSpeed, distance, orbitInclination } = this;
     this.x = Math.cos(delta * translationSpeed) * distance;
-    this.y = 0;
+    this.y = Math.cos(delta * translationSpeed) * orbitInclination * distance;
     this.z = Math.sin(delta * translationSpeed) * distance;
 
     group.position.set(this.x, this.y, this.z);

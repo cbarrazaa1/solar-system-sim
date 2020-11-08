@@ -50,6 +50,7 @@ const neptuneTexture = loader.load("/textures/neptune_surface.jpg");
 const moonTexture = loader.load("/textures/moon_surface.jpg");
 const deimosTexture = loader.load("/textures/deimos_surface.png");
 const phobosTexture = loader.load("/textures/phobos_surface.png");
+const plutoTexture = loader.load('/textures/pluto_surface.jpg');
 
 // create objects
 const spaceObjects: SpaceObject[] = [];
@@ -209,6 +210,15 @@ spaceObjects.push(
     translationSpeed: 18.2,
     quality: 32,
     texture: neptuneTexture,
+  }),
+  new SpaceObject({
+    radius: 110,
+    distance: 90000,
+    rotationSpeed: 0.0001234,
+    translationSpeed: 20,
+    quality: 32,
+    texture: plutoTexture,
+    orbitInclination: 0.125,
   })
 );
 
@@ -294,6 +304,9 @@ document.addEventListener("keydown", function (e) {
       break;
     case "9":
       i = 8;
+      break;
+    case "0":
+      i = 9;
       break;
   }
 });
