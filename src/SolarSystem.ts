@@ -3,7 +3,7 @@ import SpaceObject from './SpaceObject';
 import {tm} from './TextureManager';
 import {getRandom} from './Util';
 
-const NUM_ASTEROIDS = 2500;
+const NUM_ASTEROIDS = 1000;
 const data = json as any;
 const SolarSystemObjects: SpaceObject[] = [];
 
