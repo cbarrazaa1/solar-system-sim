@@ -53,7 +53,7 @@ for (let i = 0; i < NUM_ASTEROIDS; i++) {
       radius: getRandom(60, 180),
       distance: getRandom(77000, 78500) + getRandom(0, 10000),
       rotationSpeed: getRandom(0.001, 0.01),
-      translationSpeed: getRandom(3, 100),
+      translationSpeed: getRandom(3, 35),
       quality: Math.floor(getRandom(4, 10)),
       texture: tm.get('moon_surface'),
       showOrbit: false,
