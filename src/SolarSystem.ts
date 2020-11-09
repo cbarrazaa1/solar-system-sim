@@ -35,7 +35,23 @@ for (let i = 0; i < NUM_ASTEROIDS; i++) {
   SolarSystemObjects.push(
     new SpaceObject({
       radius: getRandom(20, 120),
-      distance: getRandom(16000, 16500) + getRandom(0, 4500),
+      distance: getRandom(16000, 16500) + getRandom(0, 5000),
+      rotationSpeed: getRandom(0.001, 0.01),
+      translationSpeed: getRandom(3, 100),
+      quality: Math.floor(getRandom(4, 10)),
+      texture: tm.get('moon_surface'),
+      showOrbit: false,
+      randomRotation: true,
+    }),
+  );
+}
+
+// add kuiper belt
+for (let i = 0; i < NUM_ASTEROIDS; i++) {
+  SolarSystemObjects.push(
+    new SpaceObject({
+      radius: getRandom(60, 180),
+      distance: getRandom(77000, 78500) + getRandom(0, 10000),
       rotationSpeed: getRandom(0.001, 0.01),
       translationSpeed: getRandom(3, 100),
       quality: Math.floor(getRandom(4, 10)),

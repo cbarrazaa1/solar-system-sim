@@ -30,7 +30,9 @@
     "webpack-dev-server": "latest"
   },
   "dependencies": {
+    "@types/stats": "^0.16.30",
     "fs": "0.0.1-security",
+    "stats.js": "^0.17.0",
     "three": "latest"
   }
 }

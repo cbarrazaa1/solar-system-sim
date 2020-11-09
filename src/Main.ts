@@ -9,6 +9,9 @@ import {
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
 import Skybox from './Skybox';
 import SolarSystemObjects from './SolarSystem';
+const StatManager = require('stats.js');
+
+const SHOW_STATS = true;
 
 // create scene
 const scene = new Scene();
@@ -24,9 +27,16 @@ const renderer = new WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = PCFSoftShadowMap;
-
-// add renderer into DOM
+renderer.domElement.style.cssText = 'position: absolute; top: 0px; left: 0px';
 document.body.appendChild(renderer.domElement);
+
+// init performance manager
+const stats = new StatManager();
+stats.showPanel(0);
+
+if (SHOW_STATS) {
+  document.body.appendChild(stats.dom);
+}
 
 // add solar system objects into scene
 for (const obj of SolarSystemObjects) {
@@ -44,7 +54,7 @@ sunLight.castShadow = true;
 sunLight.shadow.mapSize.width = 2048;
 sunLight.shadow.mapSize.height = 2048;
 sunLight.shadow.camera.near = 20;
-sunLight.shadow.camera.far = 1000005;
+sunLight.shadow.camera.far = 100000;
 scene.add(sunLight);
 const ambient = new AmbientLight('white', 0.09);
 scene.add(ambient);
@@ -100,9 +110,11 @@ document.addEventListener('keydown', function (e) {
 });
 
 function animate(): void {
-  requestAnimationFrame(animate);
+  stats.begin();
   render();
   cameraController.update();
+  stats.end();
+  requestAnimationFrame(animate);
 }
 
 function render(): void {

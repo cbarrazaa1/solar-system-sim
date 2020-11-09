@@ -22,7 +22,8 @@
     "rotationSpeed": 0.001452,
     "translationSpeed": 117.4,
     "quality": 32,
-    "texture": "venus_surface"
+    "texture": "venus_surface",
+    "retrogradeRotation": true
   },
   "earth": {
     "radius": 213.71,
@@ -164,6 +165,8 @@
     "translationSpeed": 20,
     "quality": 32,
     "texture": "pluto_surface",
-    "orbitInclination": 0.125
+    "orbitInclination": 0.05,
+    "axisAngle": 0.994838,
+    "retrogradeRotation": true
   }
 }

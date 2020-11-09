@@ -30,6 +30,7 @@ export type SpaceObjectOptions = {
   axisAngle?: number;
   randomRotation?: boolean;
   orbitInclination?: number;
+  retrogradeRotation?: boolean;
 };
 
 class SpaceObject {
@@ -42,6 +43,7 @@ class SpaceObject {
   private translationSpeed: number;
   private randomRotation: boolean;
   private orbitInclination: number;
+  private retrogradeRotation: boolean;
   public orbitLine?: Line;
   public group: Group;
   public x: number;
@@ -65,6 +67,7 @@ class SpaceObject {
     axisAngle = 0,
     randomRotation = false,
     orbitInclination = 0,
+    retrogradeRotation = false,
   }: SpaceObjectOptions) {
     this.buffer = new SphereBufferGeometry(radius, quality / 2, quality / 2);
 
@@ -94,6 +97,7 @@ class SpaceObject {
     this.translationSpeed = translationSpeed / 500.0;
     this.randomRotation = randomRotation;
     this.orbitInclination = orbitInclination;
+    this.retrogradeRotation = retrogradeRotation;
 
     // create orbit line
     if (showOrbit) {
@@ -140,7 +144,11 @@ class SpaceObject {
     group.position.set(this.x, this.y, this.z);
 
     // update y axis rotation
-    group.rotation.y += this.rotationSpeed;
+    if (this.retrogradeRotation) {
+      group.rotation.y -= this.rotationSpeed;
+    } else {
+      group.rotation.y += this.rotationSpeed;
+    }
 
     // update random rotation
     if (this.randomRotation) {
