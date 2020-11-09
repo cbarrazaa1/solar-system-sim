@@ -30,6 +30,7 @@
     "webpack-dev-server": "latest"
   },
   "dependencies": {
+    "fs": "0.0.1-security",
     "three": "latest"
   }
 }

@@ -14,7 +14,7 @@ import {
   Vector3,
 } from "three";
 
-type SpaceObjectOptions = {
+export type SpaceObjectOptions = {
   radius: number;
   distance: number;
   rotationSpeed: number;

@@ -1,0 +1,169 @@
+{
+  "sun": {
+    "radius": 2500.4,
+    "distance": 0,
+    "rotationSpeed": 0.001997,
+    "translationSpeed": 0,
+    "quality": 32,
+    "texture": "solar_surface",
+    "ignoreLight": true
+  },
+  "mercury": {
+    "radius": 174.397,
+    "distance": 4500,
+    "rotationSpeed": 0.0013892,
+    "translationSpeed": 160.8,
+    "quality": 32,
+    "texture": "mercury_surface"
+  },
+  "venus": {
+    "radius": 210.518,
+    "distance": 6500,
+    "rotationSpeed": 0.001452,
+    "translationSpeed": 117.4,
+    "quality": 32,
+    "texture": "venus_surface"
+  },
+  "earth": {
+    "radius": 213.71,
+    "distance": 9500,
+    "rotationSpeed": 0.001674,
+    "translationSpeed": 100,
+    "quality": 32,
+    "texture": "earth_surface",
+    "castShadow": true,
+    "receiveShadow": true,
+    "satellites": [
+      {
+        "radius": 15,
+        "distance": 400,
+        "rotationSpeed": 0.002,
+        "translationSpeed": 1,
+        "quality": 32,
+        "texture": "moon_surface",
+        "castShadow": true,
+        "receiveShadow": true
+      }
+    ]
+  },
+  "mars": {
+    "radius": 183.895,
+    "distance": 12500,
+    "rotationSpeed": 0.0012822,
+    "translationSpeed": 80.2,
+    "quality": 32,
+    "texture": "mars_surface",
+    "castShadow": true,
+    "satellites": [
+      {
+        "radius": 15,
+        "distance": 400,
+        "rotationSpeed": 0.002,
+        "translationSpeed": 1,
+        "quality": 12,
+        "texture": "deimos_surface",
+        "castShadow": true,
+        "receiveShadow": true
+      },
+      {
+        "radius": 21,
+        "distance": 320,
+        "rotationSpeed": 0.002,
+        "translationSpeed": 3,
+        "quality": 8,
+        "texture": "phobos_surface",
+        "castShadow": true,
+        "receiveShadow": true
+      }
+    ]
+  },
+  "jupiter": {
+    "radius": 1300.11,
+    "distance": 27399,
+    "rotationSpeed": 0.0025061,
+    "translationSpeed": 43.4,
+    "quality": 32,
+    "castShadow": true,
+    "texture": "jupyter_surface",
+    "satellites": [
+      {
+        "radius": 25,
+        "distance": 1900,
+        "rotationSpeed": 0.002,
+        "translationSpeed": 10,
+        "quality": 20,
+        "texture": "europa_surface",
+        "castShadow": true,
+        "receiveShadow": true
+      },
+      {
+        "radius": 45,
+        "distance": 1600,
+        "rotationSpeed": 0.002,
+        "translationSpeed": 20,
+        "quality": 20,
+        "texture": "io_surface",
+        "castShadow": true,
+        "receiveShadow": true
+      },
+      {
+        "radius": 80,
+        "distance": 2550,
+        "rotationSpeed": 0.002,
+        "translationSpeed": 40,
+        "quality": 20,
+        "texture": "callisto_surface",
+        "castShadow": true,
+        "receiveShadow": true
+      },
+      {
+        "radius": 130,
+        "distance": 2230,
+        "rotationSpeed": 0.002,
+        "translationSpeed": 60,
+        "quality": 20,
+        "texture": "ganymede_surface",
+        "castShadow": true,
+        "receiveShadow": true
+      }
+    ]
+  },
+  "saturn": {
+    "radius": 1000.32,
+    "distance": 35500,
+    "rotationSpeed": 0.0035532,
+    "translationSpeed": 32.3,
+    "quality": 32,
+    "texture": "saturn_surface",
+    "ringTexture": "saturn_rings",
+    "axisAngle": -0.46652651
+  },
+  "uranus": {
+    "radius": 800.62,
+    "distance": 48500,
+    "rotationSpeed": 0.000932,
+    "translationSpeed": 22.8,
+    "quality": 32,
+    "texture": "uranus_surface",
+    "ringTexture": "uranus_rings",
+    "ringSize": 320,
+    "axisAngle": 1.69297
+  },
+  "neptune": {
+    "radius": 650.22,
+    "distance": 70500,
+    "rotationSpeed": 0.000965,
+    "translationSpeed": 18.2,
+    "quality": 32,
+    "texture": "neptune_surface"
+  },
+  "pluto": {
+    "radius": 110,
+    "distance": 90000,
+    "rotationSpeed": 0.0001234,
+    "translationSpeed": 20,
+    "quality": 32,
+    "texture": "pluto_surface",
+    "orbitInclination": 0.125
+  }
+}
