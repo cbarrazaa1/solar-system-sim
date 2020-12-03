@@ -9,6 +9,7 @@ import {
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
 import Skybox from './Skybox';
 import SolarSystemObjects from './SolarSystem';
+import OvniObjects from './OvniSystem';
 const StatManager = require('stats.js');
 
 const SHOW_STATS = true;
@@ -40,6 +41,14 @@ if (SHOW_STATS) {
 
 // add solar system objects into scene
 for (const obj of SolarSystemObjects) {
+  scene.add(obj.group);
+
+  if (obj.orbitLine != null) {
+    scene.add(obj.orbitLine);
+  }
+}
+
+for (const obj of OvniObjects) {
   scene.add(obj.group);
 
   if (obj.orbitLine != null) {
@@ -122,13 +131,25 @@ function render(): void {
   for (const obj of SolarSystemObjects) {
     obj.update(delta);
   }
+  for (const obj of OvniObjects) {
+    obj.update(delta);
+  }
 
-  // follow selected planet
-  cameraController.target.set(
-    SolarSystemObjects[selectedPlanet].x,
-    SolarSystemObjects[selectedPlanet].y,
-    SolarSystemObjects[selectedPlanet].z,
-  );
+  if(selectedPlanet < 10 ){
+    // follow selected planet
+    cameraController.target.set(
+      SolarSystemObjects[selectedPlanet].x,
+      SolarSystemObjects[selectedPlanet].y,
+      SolarSystemObjects[selectedPlanet].z,
+    );
+  }
+  else{
+    cameraController.target.set(
+      OvniObjects[selectedPlanet - 10].x,
+      OvniObjects[selectedPlanet - 10].y,
+      OvniObjects[selectedPlanet - 10].z,
+    )
+  }
 
   renderer.render(scene, camera);
 }

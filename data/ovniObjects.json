@@ -1,0 +1,14 @@
+{
+    "ovni": {
+      "distance": 10000,
+      "rotationSpeed": 0.001,
+      "translationSpeed": 1,
+      "orbitInclination": 0.174533,
+      "quality": 32,
+      "radius": 800,
+      "texture": "halo_ring_texture",
+      "texture2": "halo_outer_ring_texture",
+      "ignoreLight": true,
+      "isHalo": true
+    }
+  }

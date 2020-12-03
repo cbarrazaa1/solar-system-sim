@@ -1,4 +1,5 @@
 import {
+  BoxBufferGeometry,
   DoubleSide,
   Geometry,
   Group,
@@ -12,6 +13,7 @@ import {
   Texture,
   Vector3,
 } from 'three';
+import THREE = require('three');
 
 export type SpaceObjectOptions = {
   radius: number;
@@ -33,6 +35,7 @@ export type SpaceObjectOptions = {
   retrogradeRotation?: boolean;
 };
 
+// Clase para planetas y sol
 class SpaceObject {
   private buffer: SphereBufferGeometry;
   private material: MeshBasicMaterial | MeshStandardMaterial;
@@ -162,5 +165,4 @@ class SpaceObject {
     }
   }
 }
-
 export default SpaceObject;
